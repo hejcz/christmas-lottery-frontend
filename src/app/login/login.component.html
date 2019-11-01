@@ -1,0 +1,11 @@
+<mat-form-field class="login-input">
+    <input matInput placeholder="Login" (input)="login = $event.target.value" (keyup.enter)="tryToLogin()">
+</mat-form-field>
+<mat-form-field class="login-input">
+    <input type="password" matInput placeholder="Password" (input)="password = $event.target.value"
+        (keyup.enter)="tryToLogin()">
+</mat-form-field>
+<button mat-flat-button color="primary" (click)="tryToLogin()">Login</button>
+<div class="error mt10" *ngIf="lastLoginUnsuccessful">
+    Invalid login and password combination
+</div>

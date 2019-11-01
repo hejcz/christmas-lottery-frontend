@@ -1,0 +1,13 @@
+<h2>Gifts to buy<span *ngIf="recipientGifts"> for {{recipientGifts.firstName}}
+            {{recipientGifts.lastName}}</span></h2>
+<ng-container *ngIf="recipientGifts">
+    <app-gift-to-buy *ngFor="let gift of recipientGifts.wishes" [gift]="gift">
+    </app-gift-to-buy>
+</ng-container>
+<h2>My wishes</h2>
+<app-gift *ngFor="let gift of myGifts" [gift]="gift">
+</app-gift>
+<button mat-flat-button class="mt10" (click)="addWish()">
+    <mat-icon>add</mat-icon>
+</button>
+<button mat-flat-button class="mt10 ml10" color="primary" (click)="save()" [disabled]="saveInProgress">Save</button>

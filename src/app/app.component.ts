@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthenticatedUserService } from './authenticated-user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'santa2-frontend';
+
+  constructor(public _authenticatedUser: AuthenticatedUserService) {
+  }
+
+  logout() {
+    this._authenticatedUser.logout();
+  }
+
 }

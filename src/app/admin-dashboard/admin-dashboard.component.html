@@ -1,0 +1,20 @@
+<div *ngIf="!lotteryStarted">
+    <button mat-flat-button color="primary" (click)="startLottery()">Start Lottery</button>
+</div>
+
+<div *ngIf="lotteryStarted">
+    <button mat-flat-button color="primary" (click)="resetLottery()">Reset Lottery</button>
+</div>
+
+<mat-list *ngIf="!lotteryStarted">
+    <mat-list-item *ngFor="let user of users">
+        <mat-checkbox [checked]="user.participates" (change)="handleChange($event, user)"></mat-checkbox>
+        <span class="user">{{user.firstName}} {{user.lastName}}</span>
+    </mat-list-item>
+</mat-list>
+
+<mat-list *ngIf="lotteryStarted">
+    <mat-list-item *ngFor="let user of users">
+        <span class="user">{{user.firstName}} {{user.lastName}}</span>
+    </mat-list-item>
+</mat-list>

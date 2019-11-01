@@ -1,0 +1,39 @@
+<mat-card class="gift locked" *ngIf="!gift.deleted && gift.locked">
+    <div style="width: 100%;">
+        <div class="gift-element" style="width: 60%;">
+            <div>
+                {{gift.title}}
+            </div>
+            <div *ngIf="gift.url">
+                <a href="{{gift.url}}" target="_blank">Link</a>
+            </div>
+        </div>
+        <div class="gift-element gift-td" style="width: 30%;">
+            <img *ngFor="let item of [].constructor(5); let i = index" src="assets/tree-min.png"
+                [ngClass]="{'fading': i + 1 > gift.power}" />
+        </div>
+        <div class="gift-element gift-td" style="width: 10%;">
+        </div>
+    </div>
+</mat-card>
+
+<mat-card class="gift" *ngIf="!gift.deleted && !gift.locked">
+    <div style="width: 100%;">
+        <div class="gift-element gift-td" style="width: 60%;">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Title" value="{{gift.title}}" (input)="gift.title = $event.target.value">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="URL" value="{{gift.url}}" (input)="gift.url = $event.target.value">
+            </mat-form-field>
+        </div>
+        <div class="gift-element gift-td" style="width: 30%;">
+            <img *ngFor="let item of [].constructor(5); let i = index" src="assets/tree-min.png"
+                [ngClass]="{'fading': i + 1 > tempPower}" (mouseenter)="highlightPower(i + 1)"
+                (mouseleave)="unhighlightPower()" (click)="changePower(i + 1)" />
+        </div>
+        <div class="gift-element gift-td" style="width: 10%;">
+            <button mat-flat-button color="warn" (click)="delete()">Delete</button>
+        </div>
+    </div>
+</mat-card>

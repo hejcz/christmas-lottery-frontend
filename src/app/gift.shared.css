@@ -1,0 +1,39 @@
+img.fading {
+    opacity: 0.25;
+}
+
+img {
+    width: 30px;
+    height: 30px;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.gift-element {
+    display: inline-block;
+}
+
+.gift-td {
+    vertical-align: top;
+    text-align: center;
+}
+
+.gift-td > button:not(:first-child) {
+    margin-top: 10px;
+}
+
+.gift-td > button {
+    display: block;
+}
+
+.gift {
+    margin-top: 10px;
+}
+
+.locked {
+    background-image: url("https://wallpapershome.com/images/pages/pic_h/17146.jpg");
+    background-position: 40% 55%;
+    background-size: 1600px;
+}
