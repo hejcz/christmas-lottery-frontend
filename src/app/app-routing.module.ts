@@ -46,16 +46,36 @@ export class MustNotBeLogged implements CanActivate {
   }
 }
 
+@Injectable()
+export class DefaultRedirect implements CanActivate {
+  constructor(private _router: Router, private _authenticatedUserService: AuthenticatedUserService) { }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    if (this._authenticatedUserService.isAdmin()) {
+      this._router.navigateByUrl("/admin/dashboard");
+      return false;
+    } else if (this._authenticatedUserService.isUser()) {
+      this._router.navigateByUrl("/dashboard");
+      return false;
+    } else {
+      this._router.navigateByUrl("/");
+      return false;
+    }
+  }
+}
+
 const routes: Routes = [
+  { path: '', pathMatch: 'full', component: LoginComponent, canActivate: [MustNotBeLogged] },
   { path: 'dashboard', component: UserDashboardComponent, canActivate: [LoginIfNotLoggedIn, MustBeUser] },
   { path: 'admin/dashboard', component: AdminDashboardComponent, canActivate: [LoginIfNotLoggedIn, MustBeAdmin] },
-  { path: '', component: LoginComponent, canActivate: [MustNotBeLogged] },
-  { path: '**', redirectTo: '' }
+  // it should redirect to '' but canActivate is not called on redirect so dummy component is called
+  // https://github.com/angular/angular/issues/18605
+  { path: '**', component: LoginComponent, canActivate: [DefaultRedirect] }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [LoginIfNotLoggedIn, MustBeUser, MustBeAdmin, MustNotBeLogged]
+  providers: [LoginIfNotLoggedIn, MustBeUser, MustBeAdmin, MustNotBeLogged, DefaultRedirect]
 })
 export class AppRoutingModule { }

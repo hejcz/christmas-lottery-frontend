@@ -20,7 +20,7 @@ export class UserDashboardComponent implements OnInit {
       .subscribe(recipient => this.recipientGifts = recipient);
   }
 
-  recipientGifts: RecipientGift = null
+  recipientGifts: RecipientGift = {firstName: null, lastName: null, wishes: []}
 
   myGifts: Gift[] = []
 
