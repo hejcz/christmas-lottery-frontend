@@ -1,6 +1,6 @@
-<mat-card class="gift" [ngClass]='{"locked": gift.locked }'>
+<mat-card class="gift">
     <div style="width: 100%;">
-        <div class="gift-element" style="width: 60%;">
+        <div class="gift-element gift-content">
             <div>
                 {{gift.title}}
             </div>
@@ -8,13 +8,17 @@
                 <a href="{{gift.url}}" target="_blank">Link</a>
             </div>
         </div>
-        <div class="gift-element gift-td" style="width: 30%;">
+        <div class="gift-element gift-td gift-power">
             <img *ngFor="let item of [].constructor(5); let i = index" src="assets/tree-min.png"
                 [ngClass]="{'fading': i + 1 > gift.power}" />
         </div>
-        <div class="gift-element gift-td" style="width: 10%;">
-            <button *ngIf="gift.locked" mat-flat-button color="secondary" (click)="unlockItem()">Unlock</button>
-            <button *ngIf="!gift.locked" mat-flat-button color="secondary" (click)="lockItem()">Lock</button>
+        <div class="gift-element gift-td gift-actions">
+            <button *ngIf="gift.locked" matTooltip="Unlock gift so user can edit it again." mat-flat-button color="secondary" (click)="unlockItem()">
+                <mat-icon>lock_open</mat-icon>
+            </button>
+            <button *ngIf="!gift.locked" matTooltip="Lock gift to disable any further edit e.g. you already ordered this gift." mat-flat-button color="secondary" (click)="lockItem()">
+                <mat-icon>lock</mat-icon>
+            </button>
         </div>
     </div>
 </mat-card>

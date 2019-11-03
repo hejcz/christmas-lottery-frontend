@@ -1,5 +1,6 @@
-<h2>Gifts to buy<span *ngIf="recipientGifts"> for {{recipientGifts.firstName}}
+<h2>Gifts to buy<span *ngIf="recipientGifts.firstName"> for {{recipientGifts.firstName}}
             {{recipientGifts.lastName}}</span></h2>
+<span *ngIf="recipientGifts.firstName && recipientGifts.wishes.length === 0">User did not specify any wishes yet.</span>
 <ng-container *ngIf="recipientGifts">
     <app-gift-to-buy *ngFor="let gift of recipientGifts.wishes" [gift]="gift">
     </app-gift-to-buy>
