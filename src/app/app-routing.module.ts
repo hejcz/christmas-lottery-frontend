@@ -39,10 +39,17 @@ export class MustBeUser implements CanActivate {
 
 @Injectable()
 export class MustNotBeLogged implements CanActivate {
-  constructor(private _authenticatedUserService: AuthenticatedUserService) { }
+  constructor(private _router: Router, private _authenticatedUserService: AuthenticatedUserService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    return !this._authenticatedUserService.isLoggedIn();
+    if (this._authenticatedUserService.isAdmin()) {
+      this._router.navigateByUrl("/admin/dashboard");
+      return false;
+    } else if (this._authenticatedUserService.isUser()) {
+      this._router.navigateByUrl("/dashboard");
+      return false;
+    } 
+    return true;
   }
 }
 
