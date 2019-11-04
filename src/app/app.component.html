@@ -1,15 +1,7 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-<!-- Toolbar -->
 <mat-toolbar>
   <mat-toolbar-row>
+      <span *ngIf="!_authenticatedUser.isLoggedIn()"><a routerLink="/" routerLinkActive="active">Login</a>
+      </span>
     <span *ngIf="_authenticatedUser.isAdmin()"><a routerLink="/admin/dashboard" routerLinkActive="active">Lottery</a>
     </span>
     <span *ngIf="_authenticatedUser.isUser()"><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></span>

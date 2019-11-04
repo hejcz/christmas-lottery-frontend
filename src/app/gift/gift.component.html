@@ -34,7 +34,9 @@
                 (mouseleave)="unhighlightPower()" (click)="changePower(i + 1)" />
         </div>
         <div class="gift-element gift-td gift-actions">
-            <button mat-flat-button color="warn" (click)="delete()">Delete</button>
+            <button mat-flat-button (click)="delete()">
+                    <mat-icon matTooltip="Delete" color="warn">delete</mat-icon>
+            </button>
         </div>
     </div>
 </mat-card>

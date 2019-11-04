@@ -18,6 +18,8 @@ import { LoginComponent } from './login/login.component';
 import { MatIconModule } from '@angular/material/icon';
 import { GiftToBuyComponent } from './gift-to-buy/gift-to-buy.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { RemindPasswordComponent } from './remind-password/remind-password.component';
+import { NewPasswordComponent } from './new-password/new-password.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     AdminDashboardComponent,
     GiftComponent,
     LoginComponent,
-    GiftToBuyComponent
+    GiftToBuyComponent,
+    RemindPasswordComponent,
+    NewPasswordComponent
   ],
   imports: [
     BrowserModule,

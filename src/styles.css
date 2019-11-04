@@ -10,3 +10,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .ml10 {
     margin-left: 10px !important;
 }
+
+.mat-tooltip {
+    font-size: 14px;
+}

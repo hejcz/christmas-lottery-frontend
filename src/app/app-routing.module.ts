@@ -4,6 +4,8 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AuthenticatedUserService } from './authenticated-user.service';
 import { LoginComponent } from './login/login.component';
+import { RemindPasswordComponent } from './remind-password/remind-password.component';
+import { NewPasswordComponent } from './new-password/new-password.component';
 
 
 @Injectable()
@@ -75,6 +77,8 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', component: LoginComponent, canActivate: [MustNotBeLogged] },
   { path: 'dashboard', component: UserDashboardComponent, canActivate: [LoginIfNotLoggedIn, MustBeUser] },
   { path: 'admin/dashboard', component: AdminDashboardComponent, canActivate: [LoginIfNotLoggedIn, MustBeAdmin] },
+  { path: 'password-recovery', component: RemindPasswordComponent, canActivate: [MustNotBeLogged] },
+  { path: 'new-password', component: NewPasswordComponent, canActivate: [MustNotBeLogged] },
   // it should redirect to '' but canActivate is not called on redirect so dummy component is called
   // https://github.com/angular/angular/issues/18605
   { path: '**', component: LoginComponent, canActivate: [DefaultRedirect] }

@@ -17,6 +17,14 @@ export class RestClientService {
     return this.get(`${environment.apiUrl}/users/current/roles`);
   }
 
+  resetPassword(email: string) {
+    return this.anonymousPut(`${environment.apiUrl}/passwords/recovery`, email);
+  }
+
+  newPassword(password: any) {
+    return this.anonymousPut(`${environment.apiUrl}/passwords`, password);
+  }
+
   fetchMyWishes(): Observable<Gift[]> {
     return this.get(`${environment.apiUrl}/users/current/wish-list`);
   }
@@ -53,6 +61,10 @@ export class RestClientService {
     return this._http.put(url, payload, this.options());
   }
 
+  private anonymousPut(url: string, payload: any) {
+    return this._http.put(url, payload);
+  }
+
   private get<T>(url: string) {
     return this._http.get<T>(url, this.options());
   }
@@ -64,7 +76,6 @@ export class RestClientService {
   private options() {
     return {
       "headers": new HttpHeaders()
-        .append("Content-type", "application/json")
         .append("Authorization", `Basic ${this._authenticatedUserService.basicAuthHeader()}`)
     }
   };
