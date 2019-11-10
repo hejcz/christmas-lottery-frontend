@@ -16,7 +16,7 @@ img {
 }
 
 .gift-td {
-    vertical-align: top;
+    vertical-align: middle;
     text-align: center;
 }
 
@@ -44,7 +44,17 @@ img {
     width: 10%;
 }
 
-@media only screen and (max-width: 600px) {
+.mat-icon {
+    cursor: pointer;
+    user-select: none;
+}
+
+.gift-power,
+.gift-power.img {
+    user-select: none;
+}
+
+@media only screen and (max-width: 620px) {
     .gift-element {
         display: block;
     }

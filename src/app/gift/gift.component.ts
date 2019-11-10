@@ -50,4 +50,12 @@ export class GiftComponent implements OnInit {
     this.gift.deleted = true;
   }
 
+  prepareUrl() {
+    const url = this.gift.url;
+    if (url.startsWith("http://") || url.startsWith("https://")) {
+      return url;
+    }
+    return `//${url}`;
+  }
+
 }

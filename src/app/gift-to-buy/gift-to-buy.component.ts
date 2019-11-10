@@ -26,5 +26,13 @@ export class GiftToBuyComponent implements OnInit {
       .subscribe(() => this.gift.locked = false);
   }
 
+  prepareUrl() {
+    const url = this.gift.url;
+    if (url.startsWith("http://") || url.startsWith("https://")) {
+      return url;
+    }
+    return `//${url}`;
+  }
+
 }
 

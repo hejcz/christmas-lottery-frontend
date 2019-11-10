@@ -2,11 +2,11 @@
     <input matInput placeholder="Login" (input)="login = $event.target.value" (keyup.enter)="tryToLogin()">
 </mat-form-field>
 <mat-form-field class="login-input">
-    <input type="password" matInput placeholder="Password" (input)="password = $event.target.value"
+    <input type="password" matInput placeholder="Hasło" (input)="password = $event.target.value"
         (keyup.enter)="tryToLogin()">
 </mat-form-field>
-<a routerLink="/password-recovery">Reset password</a>
-<button mat-flat-button class="mt10" color="primary" (click)="tryToLogin()">Login</button>
+<a routerLink="/password-recovery">Zapomniałem hasła</a>
+<button mat-flat-button class="mt10" color="primary" (click)="tryToLogin()">Zaloguj</button>
 <div class="error mt10" *ngIf="lastLoginUnsuccessful">
-    Invalid login and password combination
+    Login lub hasło nie są prawidłowe
 </div>

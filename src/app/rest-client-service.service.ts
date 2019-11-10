@@ -49,6 +49,10 @@ export class RestClientService {
     return this.delete(`${environment.apiUrl}/lottery`);
   }
 
+  lotteryPerformed(): Observable<boolean> {
+    return this.get(`${environment.apiUrl}/lottery/admin`);
+  }
+
   lockWish(id: number) {
     return this.put(`${environment.apiUrl}/lottery/wishes/${id}/lock`, null);
   }

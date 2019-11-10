@@ -18,11 +18,15 @@ export class AdminDashboardComponent implements OnInit {
         users.forEach(u => u.participates = true);
         this.users = users;
       });
+    this._rest.lotteryPerformed()
+      .subscribe(isPerformed => {
+        this.lotteryStarted = isPerformed;
+      });
   }
 
   users: LotteryParticipant[] = []
 
-  lotteryStarted: boolean
+  lotteryStarted: boolean = null
 
   handleChange(event: MatCheckboxChange, user: LotteryParticipant) {
     user.participates = event.checked;

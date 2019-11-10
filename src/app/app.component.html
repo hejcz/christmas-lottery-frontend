@@ -1,11 +1,11 @@
 <mat-toolbar>
   <mat-toolbar-row>
-      <span *ngIf="!_authenticatedUser.isLoggedIn()"><a routerLink="/" routerLinkActive="active">Login</a>
+      <span *ngIf="!_authenticatedUser.isLoggedIn()"><a routerLink="/" routerLinkActive="active">Zaloguj</a>
       </span>
-    <span *ngIf="_authenticatedUser.isAdmin()"><a routerLink="/admin/dashboard" routerLinkActive="active">Lottery</a>
+    <span *ngIf="_authenticatedUser.isAdmin()"><a routerLink="/admin/dashboard" routerLinkActive="active">Loteria</a>
     </span>
-    <span *ngIf="_authenticatedUser.isUser()"><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></span>
-    <span *ngIf="_authenticatedUser.isLoggedIn()"><a routerLink="" (click)="logout()">Logout</a></span>
+    <span *ngIf="_authenticatedUser.isUser()"><a routerLink="/dashboard" routerLinkActive="active">Prezenty</a></span>
+    <span *ngIf="_authenticatedUser.isLoggedIn()"><a routerLink="" (click)="logout()">Wyloguj</a></span>
   </mat-toolbar-row>
 </mat-toolbar>
 
