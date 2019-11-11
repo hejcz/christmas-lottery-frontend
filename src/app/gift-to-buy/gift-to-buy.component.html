@@ -14,12 +14,12 @@
         </div>
         <div class="gift-element gift-td gift-actions">
             <mat-icon *ngIf="gift.locked" matTooltip="Odblokuj prezent - obdarowywany będzie mógł go znowu edytować." (click)="unlockItem()">
-                lock_open
+                lock
             </mat-icon>
             <mat-icon *ngIf="!gift.locked"
                 matTooltip="Zablokuj prezent, żeby obdarowywany nie mógł go edytować."
                 (click)="lockItem()">
-                lock
+                lock_open
             </mat-icon>
         </div>
     </div>
