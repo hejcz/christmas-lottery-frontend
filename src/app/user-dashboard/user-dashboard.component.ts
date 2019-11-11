@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Gift } from "../gift/gift.model";
 import { RestClientService } from '../rest-client-service.service';
-import { debounce } from "rxjs/operators";
+import { catchError, tap, delay } from "rxjs/operators";
 import { RecipientGift } from '../gift-to-buy/gift.model';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -56,15 +57,21 @@ export class UserDashboardComponent implements OnInit {
     this.myGifts.sort(this.giftComparator);
     this.saveInProgress = true
     this._rest.saveMyWishes(this.myGifts)
-      .subscribe(
-        _ => {
+      .pipe(
+        tap(_ => {
           this.saveInProgress = false;
           this.lastSaveSuccess = true
-        },
-        _ => {
+        }),
+        catchError(_ => {
           this.saveInProgress = false;
-          this.lastSaveSuccess = false
-        });
+          this.lastSaveSuccess = false;
+          return of("delay response")
+        }),
+        delay(2000)
+      )
+      .subscribe(
+        _ => this.lastSaveSuccess = null
+      );
   }
 
 }
