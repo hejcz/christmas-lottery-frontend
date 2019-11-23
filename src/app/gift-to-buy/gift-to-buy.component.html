@@ -8,19 +8,11 @@
                 <a [href]="prepareUrl()" target="_blank">{{gift.url}}</a>
             </div>
         </div>
-        <div class="gift-element gift-td gift-power">
+        <div class="gift-element gift-td gift-power" style="vertical-align: top;">
             <img *ngFor="let item of [].constructor(5); let i = index" src="assets/tree-min.png"
                 [ngClass]="{'fading': i + 1 > gift.power}" />
         </div>
         <div class="gift-element gift-td gift-actions">
-            <mat-icon *ngIf="gift.locked" matTooltip="Odblokuj prezent - obdarowywany będzie mógł go znowu edytować." (click)="unlockItem()">
-                lock
-            </mat-icon>
-            <mat-icon *ngIf="!gift.locked"
-                matTooltip="Zablokuj prezent, żeby obdarowywany nie mógł go edytować."
-                (click)="lockItem()">
-                lock_open
-            </mat-icon>
         </div>
     </div>
 </mat-card>

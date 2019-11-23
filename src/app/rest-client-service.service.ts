@@ -5,6 +5,7 @@ import { Gift } from './gift/gift.model';
 import { AuthenticatedUserService } from './authenticated-user.service';
 import { Observable } from 'rxjs';
 import { RecipientGift } from './gift-to-buy/gift.model';
+import { WishList } from './gift/wishlist.model ';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class RestClientService {
     return this.anonymousPut(`${environment.apiUrl}/passwords`, password);
   }
 
-  fetchMyWishes(): Observable<Gift[]> {
+  fetchMyWishes(): Observable<WishList> {
     return this.get(`${environment.apiUrl}/users/current/wish-list`);
   }
 
@@ -53,12 +54,12 @@ export class RestClientService {
     return this.get(`${environment.apiUrl}/lottery/admin`);
   }
 
-  lockWish(id: number) {
-    return this.put(`${environment.apiUrl}/lottery/wishes/${id}/lock`, null);
+  lockWishlist() {
+    return this.put(`${environment.apiUrl}/lottery/wishes/lock`, null);
   }
 
-  unlockWish(id: number) {
-    return this.delete(`${environment.apiUrl}/lottery/wishes/${id}/lock`);
+  unlockWishlist() {
+    return this.delete(`${environment.apiUrl}/lottery/wishes/lock`);
   }
 
   private put(url: string, payload: any) {

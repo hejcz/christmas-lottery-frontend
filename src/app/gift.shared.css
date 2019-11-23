@@ -44,11 +44,6 @@ img {
     width: 10%;
 }
 
-.mat-icon {
-    cursor: pointer;
-    user-select: none;
-}
-
 .gift-power,
 .gift-power.img {
     user-select: none;

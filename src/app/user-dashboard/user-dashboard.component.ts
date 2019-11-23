@@ -16,20 +16,25 @@ export class UserDashboardComponent implements OnInit {
 
   ngOnInit() {
     this._rest.fetchMyWishes()
-      .subscribe(wishes => {
-        wishes.sort(this.giftComparator);
-        this.myGifts = wishes
+      .subscribe(wishlist => {
+        wishlist.wishes = Array.from(wishlist.wishes);
+        wishlist.wishes.sort(this.giftComparator);
+        this.myGifts = wishlist.wishes
+        this.locked = wishlist.locked
       });
     this._rest.fetchMatchedUser()
       .subscribe(recipient => {
+        recipient.wishes = Array.from(recipient.wishes);
         recipient.wishes.sort(this.giftComparator);
         this.recipientGifts = recipient
       });
   }
 
-  recipientGifts: RecipientGift = { firstName: null, lastName: null, wishes: [] }
+  recipientGifts: RecipientGift = { firstName: null, lastName: null, wishes: [], locked: false }
 
   myGifts: Gift[] = []
+
+  locked: boolean = false
 
   saveInProgress = false
 
@@ -72,6 +77,16 @@ export class UserDashboardComponent implements OnInit {
       .subscribe(
         _ => this.lastSaveSuccess = null
       );
+  }
+
+  lockWishlist() {
+    this._rest.lockWishlist()
+      .subscribe(_ => this.recipientGifts.locked = true);
+  }
+
+  unlockWishlist() {
+    this._rest.unlockWishlist()
+      .subscribe(_ => this.recipientGifts.locked = false);
   }
 
 }

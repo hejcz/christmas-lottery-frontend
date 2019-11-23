@@ -15,22 +15,8 @@ export class GiftComponent implements OnInit {
 
   tempPower: number
 
-  initialLocked: boolean
-
   ngOnInit() {
     this.tempPower = this.gift.power;
-    this.initialLocked = this.gift.locked;
-  }
-
-  lockItem() {
-    this._rest.lockWish(this.gift.id)
-      .subscribe(() => this.gift.locked = true);
-  }
-
-  unlockItem() {
-    if (!this.initialLocked) {
-      this.gift.locked = false;
-    }
   }
 
   highlightPower(ordinal: number) {

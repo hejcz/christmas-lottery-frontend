@@ -1,28 +1,10 @@
-<mat-card class="gift" *ngIf="!gift.deleted && gift.locked">
-    <div style="width: 100%;">
-        <div class="gift-element gift-content">
-            <div>
-                {{gift.title}}
-            </div>
-            <div *ngIf="gift.url">
-                <a [href]="prepareUrl()" target="_blank">{{gift.url}}</a>
-            </div>
-        </div>
-        <div class="gift-element gift-td gift-power">
-            <img *ngFor="let item of [].constructor(5); let i = index" src="assets/tree-min.png"
-                [ngClass]="{'fading': i + 1 > gift.power}" />
-        </div>
-        <div class="gift-element gift-td gift-actions">
-            <mat-icon matTooltip="Mikołaj zablokował ten prezent - nie możesz go już edytować.">lock</mat-icon>
-        </div>
-    </div>
-</mat-card>
-
-<mat-card class="gift" *ngIf="!gift.deleted && !gift.locked">
+<mat-card class="gift" *ngIf="!gift.deleted">
     <div style="width: 100%;">
         <div class="gift-element gift-td gift-content">
             <mat-form-field class="example-full-width">
-                <input matInput placeholder="Nazwa" value="{{gift.title}}" (input)="gift.title = $event.target.value">
+                <textarea rows=2 matInput placeholder="Nazwa" value="{{gift.title}}"
+                    (input)="gift.title = $event.target.value">
+                </textarea>
             </mat-form-field>
             <mat-form-field class="example-full-width">
                 <input matInput placeholder="Link" value="{{gift.url}}" (input)="gift.url = $event.target.value">

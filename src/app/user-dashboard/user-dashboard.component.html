@@ -1,22 +1,41 @@
 <h2 *ngIf="recipientGifts.firstName">Proponowane<span> przez {{recipientGifts.firstName}}
         {{recipientGifts.lastName}}</span></h2>
-<span *ngIf="recipientGifts.firstName && recipientGifts.wishes.length === 0">Ta osoba nie podała jeszcze żadnych propozycji.</span>
+<span *ngIf="recipientGifts.firstName && recipientGifts.wishes.length === 0">Ta osoba nie podała jeszcze żadnych
+    propozycji.</span>
 <ng-container *ngIf="recipientGifts">
-    <app-gift-to-buy *ngFor="let gift of recipientGifts.wishes" [gift]="gift">
+    <app-gift-to-buy *ngFor="let gift of recipientGifts.wishes" [gift]="gift" [locked]="recipientGifts.locked">
     </app-gift-to-buy>
 </ng-container>
-<h2>Moja lista życzeń</h2>
-<app-gift *ngFor="let gift of myGifts" [gift]="gift">
-</app-gift>
-<button mat-flat-button class="mt10" (click)="addWish()">
-    <mat-icon>add</mat-icon>
-</button>
-<button mat-flat-button class="mt10 ml10" color="primary" (click)="save()" [disabled]="saveInProgress">Zapisz</button>
-<div class="ml10" style="display: inline-block;" [style.color]="lastSaveSuccess ? 'green' : 'red'">
-    <ng-container *ngIf="lastSaveSuccess">
-        Zapisano życzenia
-    </ng-container>
-    <ng-container *ngIf="lastSaveSuccess !== null && !lastSaveSuccess">
-        Nie udało się zapisać życzeń
-    </ng-container>
+<div *ngIf="recipientGifts.firstName && recipientGifts.wishes.length > 0">
+    <mat-icon *ngIf="recipientGifts.locked" matTooltip="Odblokuj listę życzeń. Obdarowywany znowu będzie mógł je zmieniać."
+        (click)="unlockWishlist()" class="mt20">
+        lock
+    </mat-icon>
+    <mat-icon *ngIf="!recipientGifts.locked" class="mt20"
+        matTooltip="Zablokuj listę życzeń, żeby obdarowywany nie mógł ich już zmieniać." (click)="lockWishlist()">
+        lock_open
+    </mat-icon>
 </div>
+<h2>Moja lista życzeń</h2>
+<ng-container *ngIf="!locked">
+    <app-gift *ngFor="let gift of myGifts" [gift]="gift">
+    </app-gift>
+    <button mat-flat-button class="mt10" (click)="addWish()">
+            <mat-icon>add</mat-icon>
+        </button>
+        <button mat-flat-button class="mt10 ml10" color="primary" (click)="save()" [disabled]="saveInProgress">Zapisz</button>
+        <div class="ml10" style="display: inline-block;" [style.color]="lastSaveSuccess ? 'green' : 'red'">
+            <ng-container *ngIf="lastSaveSuccess">
+                Zapisano życzenia
+            </ng-container>
+            <ng-container *ngIf="lastSaveSuccess !== null && !lastSaveSuccess">
+                Nie udało się zapisać życzeń
+            </ng-container>
+        </div>
+</ng-container>
+<ng-container *ngIf="locked">
+    Mikołaj przygotował już dla Ciebie prezenty. Do zobaczenia pod choinką!
+    <div style="width: 100%;">
+        <img class="mt10" style="height: 300px; margin: auto; display: block" src="assets/locked_gift.jpg">
+    </div>
+</ng-container>

@@ -3,3 +3,8 @@ h2 {
     font-size: 25px;
     font-weight: bold;
 }
+
+.mat-icon {
+    cursor: pointer;
+    user-select: none;
+}

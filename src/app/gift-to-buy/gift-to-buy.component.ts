@@ -13,17 +13,9 @@ export class GiftToBuyComponent implements OnInit {
 
   @Input() gift: Gift
 
+  @Input() locked: boolean
+
   ngOnInit() {
-  }
-
-  lockItem() {
-    this._rest.lockWish(this.gift.id)
-      .subscribe(() => this.gift.locked = true);
-  }
-
-  unlockItem() {
-    this._rest.unlockWish(this.gift.id)
-      .subscribe(() => this.gift.locked = false);
   }
 
   prepareUrl() {
