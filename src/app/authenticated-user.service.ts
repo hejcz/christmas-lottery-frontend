@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { UtilService } from './util.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticatedUserService {
     
-  constructor() {
+  constructor(private _util: UtilService) {
     if (localStorage.getItem("auth") !== null && localStorage.getItem("roles") !== null) {
       this.basicAuthorization = localStorage.getItem("auth");
       this.roles = JSON.parse(localStorage.getItem("roles"));
@@ -23,7 +24,7 @@ export class AuthenticatedUserService {
   }
 
   saveLoginData(login: string, password: string) {
-    this.basicAuthorization = btoa(login + ":" + password);
+    this.basicAuthorization = this._util.b64EncodeUnicode(login + ":" + password);
   }
 
   saveRoles(roles: string[]) {
