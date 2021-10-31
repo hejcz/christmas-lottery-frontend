@@ -82,6 +82,13 @@ export class RestClientService {
     return {
       "headers": new HttpHeaders()
         .append("Authorization", `Basic ${this._authenticatedUserService.basicAuthHeader()}`)
+        .append("X-XSRF-TOKEN", `${this.getCookie("XSRF-TOKEN")}`)
     }
   };
+
+  private getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  }
 }
