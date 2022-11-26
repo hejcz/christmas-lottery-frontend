@@ -11,7 +11,7 @@ import { WishList } from './gift/wishlist.model ';
   providedIn: 'root'
 })
 export class RestClientService {
- 
+
   constructor(private _http: HttpClient, private _authenticatedUserService: AuthenticatedUserService) { }
 
   fetchRoles() {
@@ -67,7 +67,7 @@ export class RestClientService {
   }
 
   private anonymousPut(url: string, payload: any) {
-    return this._http.put(url, payload);
+    return this._http.put(url, payload, this.anonymousOptions());
   }
 
   private get<T>(url: string) {
@@ -82,6 +82,13 @@ export class RestClientService {
     return {
       "headers": new HttpHeaders()
         .append("Authorization", `Basic ${this._authenticatedUserService.basicAuthHeader()}`)
+        .append("X-XSRF-TOKEN", `${this.getCookie("XSRF-TOKEN")}`)
+    }
+  };
+
+  private anonymousOptions() {
+    return {
+      "headers": new HttpHeaders()
         .append("X-XSRF-TOKEN", `${this.getCookie("XSRF-TOKEN")}`)
     }
   };
